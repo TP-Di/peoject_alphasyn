@@ -8,7 +8,7 @@ on:
 jobs:
   send:
     runs-on: ubuntu-latest
-    environment: .env
+    environment: prod
     timeout-minutes: 180
     steps:
       - uses: actions/checkout@v4
