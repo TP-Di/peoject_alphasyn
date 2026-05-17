@@ -35,11 +35,19 @@ def fetch_birthdays():
 
     values = result.get("values", [])
     df = pd.DataFrame(values[1:], columns=values[0])
-    df["day"] = df.birth_date.str[0:2].astype(int)
-    df["month"] = df.birth_date.str[3:5].astype(int)
+
+    # фильтруем сначала по active, чтобы пустые/некорректные даты неактивных не ломали парсинг
+    df = df[df["active"] == "TRUE"].copy()
+    df = df[df["birth_date"].str.strip().str.len() >= 5].copy()
+
+    df["day"] = pd.to_numeric(df["birth_date"].str[0:2], errors="coerce")
+    df["month"] = pd.to_numeric(df["birth_date"].str[3:5], errors="coerce")
+    df = df.dropna(subset=["day", "month"])
+    df["day"] = df["day"].astype(int)
+    df["month"] = df["month"].astype(int)
 
     today = datetime.today()
-    df_bd = df.query('day == @today.day and month == @today.month and active == "TRUE"')
+    df_bd = df.query("day == @today.day and month == @today.month")
 
     return [
         {"name": r.name, "notes": r.notes, "card": r.card}
