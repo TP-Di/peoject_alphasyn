@@ -73,7 +73,7 @@ def send_one(gemini_client, person):
     )
 
     greeting = response.text.strip()
-    card_line = f"\nДля тех кто хочет поздравить: {card}" if pd.notna(card) else ""
+    card_line = f"\nДля тех кто хочет поздравить: `{card}`" if pd.notna(card) else ""
     full_message = f"#birthday\n{greeting}{card_line}"
 
     r = requests.post(
