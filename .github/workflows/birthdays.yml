@@ -1,0 +1,28 @@
+name: Daily birthdays
+
+on:
+  schedule:
+    - cron: "0 4 * * *"  # 09:00 Asia/Tashkent (UTC+5)
+  workflow_dispatch:
+
+jobs:
+  send:
+    runs-on: ubuntu-latest
+    timeout-minutes: 180
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+          cache: pip
+
+      - run: pip install -r requirements.txt
+
+      - run: python main.py
+        env:
+          TG_BOT_TOKEN: ${{ secrets.TG_BOT_TOKEN }}
+          TG_GROUP_ID: ${{ secrets.TG_GROUP_ID }}
+          GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
+          GOOGLE_SA_JSON: ${{ secrets.GOOGLE_SA_JSON }}
+          GOOGLE_ID: ${{ secrets.GOOGLE_ID }}

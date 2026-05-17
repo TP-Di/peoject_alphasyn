@@ -1,0 +1,8 @@
+services:
+  birthdays:
+    build: .
+    image: alphasyn:latest
+    container_name: alphasyn
+    restart: unless-stopped
+    env_file: .env
+    command: ["python", "scheduler.py"]
