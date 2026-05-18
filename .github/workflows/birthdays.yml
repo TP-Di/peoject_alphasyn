@@ -2,7 +2,7 @@ name: Daily birthdays
 
 on:
   schedule:
-    - cron: "0 4 * * *"  # 09:00 Asia/Tashkent (UTC+5)
+    - cron: "55 3 * * *"  # 09:00 Asia/Tashkent (UTC+5)
   workflow_dispatch:
 
 jobs:
