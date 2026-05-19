@@ -2,7 +2,7 @@ name: Daily birthdays
 
 on:
   schedule:
-    - cron: "0 4 * * *"  # 09:00 Asia/Tashkent (UTC+5)
+    - cron: "13 4 * * *"  # 09:13 Asia/Tashkent (UTC+5). Не на :00, чтобы не попадать в peak-окно GHA, когда scheduled-запуски откладываются/пропускаются.
   workflow_dispatch:
 
 jobs:
