@@ -2,7 +2,7 @@ name: Daily birthdays
 
 on:
   schedule:
-    - cron: "13 2 * * *"  # 07:13 Asia/Tashkent (UTC+5). Запас в ~2 часа до желаемых 09:00 на случай задержки GHA scheduled-триггера; не на :00 чтобы не попадать в peak-окно.
+    - cron: "13 0 * * *"  # 05:13 Asia/Tashkent (UTC+5). Запас в ~2 часа до желаемых 09:00 на случай задержки GHA scheduled-триггера; не на :00 чтобы не попадать в peak-окно.
   workflow_dispatch:
 
 jobs:
